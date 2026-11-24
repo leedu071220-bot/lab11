@@ -34,31 +34,20 @@ public:
     {
         testID(); testPrice();
     }    
-    void input(std::istream& is = )//book b; b.input();
+    void input(std::istream& is = std::cin)//book b; b.input();
     {
         std::cout << "Enter book title: ";
         std::getline(std::cin >> std::ws, title);//std::cin >> title;
         std::cout << "Enter book id: ";
-        std::cin >> id; testID();
+        is >> id; testID();
         std::cout << "Enter book price: ";
-        std::cin >> price; testPrice();
+        is >> price; testPrice();
     }
     friend std::istream& operator>>(std::istream& is, book& b)
     {
-        std::cout << "Enter book title: ";
-        std::getline(is >> std::ws, b.title);
-        std::cout << "Enter book id: ";
-        is >> b.id; b.testID();
-        std::cout << "Enter book price: ";
-        is >> b.price; b.testPrice();         
+        b.input(is);       
         return is;
     }        
-
-
-
-
-
-
 
     void setID(int d){id = d; testID();}
     void setPrice(int p){price = p; testPrice();}
@@ -79,9 +68,7 @@ public:
     const std::string& getTitle() const {return title;}
     int getID() const {return id;}
     int getPrice() const {return price;}
-
-
-    book operator++()
+    book& operator++()
     {
         ++price;
         return *this;
@@ -114,4 +101,4 @@ public:
 };
 
 
-}//
+}
