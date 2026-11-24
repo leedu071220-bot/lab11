@@ -9,7 +9,6 @@ namespace Leedayoung2649098
         std::vector<book> v;
         std::streambuf* origBuf{std::cout.rebuf()};
         std::cout.rdbuf(nullptr);
-        
         while (!fin.eof())
         {
            book b; fin >> b;
